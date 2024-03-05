@@ -1,8 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Grid, Box, Paper } from '@mui/material';
-import LeftSection from './LeftSection';
-import "./login.css"
+import LeftSection from '../LeftSection';
 import RightSection from './RightSection';
 
 
@@ -15,19 +14,19 @@ const Item = styled(Paper)(({ theme }) => ({
 
 }));
 
-const Login = (props) => {
+const Signup = (props) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2} style={{ padding: '24px' }} >
-        <Grid item xs={6}>
+      <Grid container spacing={2} style={{ padding: '20px' }} >
+        <Grid item xs={6} sx={{p:0}}>
           <LeftSection />
         </Grid>
-        <Grid item xs={6}>
-          <RightSection />
+        <Grid item xs={6} sx={{p:0}}>
+          <RightSection  />
         </Grid>
       </Grid>
     </Box>
   );
 };
 
-export default Login;
+export default Signup;

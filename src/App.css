@@ -1,0 +1,110 @@
+.right-card {
+  background-color: rgba(250, 250, 250, 0);
+  border-radius: 16px;
+  border: 1px solid #ebebeb;
+  box-sizing: border-box;
+  height: 95vh;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.right-card-inner {
+  max-width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.right-card .text {
+  color: #212529;
+  font-size: 48px;
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: 600;
+  line-height: 56px;
+  padding-bottom: 15px;
+  text-align: left;
+  width: 100%;
+}
+
+.right-card .para {
+  color: #444444;
+  font-size: 16px;
+  font-family: 'Lexend Deca', sans-serif;
+  line-height: 24px;
+  padding-bottom: 24px;
+
+}
+
+.right-card .bottom-text {
+  color: #444444;
+  font-size: 16px;
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  padding-top: 20px;
+  cursor: pointer;
+}
+
+.right-card .box-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-card {
+  background-color: #111111;
+  border-radius: 16px;
+  padding: 32px;
+  height: 95vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.left-card .text {
+  color: #f4f4f4;
+  font-size: 40px;
+  font-family: 'Lexend Deca';
+  font-weight: 600;
+  line-height: 44px;
+  position: absolute;
+  top: 32px;
+  left: 32px;
+}
+
+.left-card .image {
+  width: 100%;
+  height: auto;
+}
+
+
+
+/* lgoin */
+
+.login_input {
+  /* position: absolute; */
+  /* top: 306px; */
+  /* left: 852px; */
+  max-width: 448px;
+  width: 100%;
+  height: 48px !important;
+  padding: 0px 8px !important;
+  border: 1px solid #dddddd;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background-color: rgba(235, 235, 235, 0);
+  color: #212529;
+  font-size: 16px;
+  font-family: 'Lexend Deca';
+  line-height: 24px;
+  outline: none;
+  text-indent: 10px;
+}

@@ -36,11 +36,11 @@ const styles = {
 
 const LeftSection = () => {
     return (
-        <Box style={styles.Card}>
-            <Typography variant="h1" gutterBottom style={styles.Text}>
+        <Box className="left-card">
+            <Typography variant="h1" gutterBottom className="text">
                 Easy Task
             </Typography>
-            <Box style={styles.Image}>
+            <Box  className="image">
                 <img src={bgImg} alt="bg-img" style={{height:"100%",width:"100%"}} loading="lazy"/>
             </Box>
         </Box>
