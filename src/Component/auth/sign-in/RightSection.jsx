@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { Typography, Box, Paper, TextField, IconButton, FormControl, InputLabel, OutlinedInput, InputAdornment, Grid ,makeStyles} from '@mui/material';
+import { Typography, Box, Paper, TextField, IconButton, FormControl, InputLabel, OutlinedInput, InputAdornment, Grid } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
+import { useTheme } from '@mui/material/styles';
 
 const Divider = styled('div')(({ theme }) => ({
     height: '1px',
@@ -17,13 +17,14 @@ const HorizontalDivider = styled('div')(({ theme }) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    columnGap: "20px"
+    columnGap: "20px",
+    rowGap: "15px"
 }));
 
 const Button = styled('button')(({ theme }) => ({
     ...theme.typography.button,
     cursor: 'pointer',
-    maxWidth: '482px',
+    // maxWidth: '482px',
     width: "100%",
     height: '48px',
     padding: '0px 8px',
@@ -44,9 +45,8 @@ const Button = styled('button')(({ theme }) => ({
 }));
 const OauthButton = styled('button')(({ theme }) => ({
     cursor: 'pointer',
-    top: '562px',
-    left: '851px',
-    width: '212px',
+    // width: '212px',
+    width: "100%",
     height: '48px',
     padding: '0px 8px',
     border: '0',
@@ -61,18 +61,61 @@ const OauthButton = styled('button')(({ theme }) => ({
     outline: 'none',
 }));
 
-const useStyles = makeStyles({
-    root: {
-        '& .MuiInputBase-input': {
-            backgroundColor: 'lightblue',
-            borderRadius: '5px',
-        },
+
+const styles = {
+    Input: {
+        top: '235px',
+        left: '846px',
+        width: '468px',
+        height: '48px',
+        padding: '0px 8px',
+        border: '1px solid #dddddd',
+        boxSizing: 'border-box',
+        borderRadius: '8px',
+        backgroundColor: 'rgba(235,235,235,0)',
+        color: '#212529',
+        fontSize: '14px',
+        fontFamily: 'Lexend Deca',
+        fontWeight: 500,
+        lineHeight: '18px',
+        outline: 'none',
     },
-});
+    or: {
+        color: '#7c7c7c',
+        fontSize: '16px',
+        fontFamily: 'Lexend Deca',
+        lineHeight: '24px',
+        textAlign: 'center',
+    },
+    input: {
+        height: '48px',
+        color: '#212529',
+        fontSize: '14px',
+        fontFamily: 'Lexend Deca',
+        fontWeight: 500,
+        lineHeight: '18px',
+        outline: 'none',
+        border: "none",
+        width: "100%",
+        textIndent: "10px"
+    },
+    inputbox: {
+        width: "100%",
+        padding: '0px 16px  0px  8px ',
+        border: '1px solid #dddddd',
+        boxSizing: 'border-box',
+        borderRadius: '8px',
+        backgroundColor: 'rgba(235,235,235,0)',
+        display: 'flex',
+        justifyContent: "space-between",
+        alignItems: 'center',
+        marginTop: '20px'
+    },
+};
 
 const RightSection = () => {
-    const classes = useStyles();
     const naviate = useNavigate()
+    const theme = useTheme();
     const [showPassword, setShowPassword] = React.useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -81,29 +124,35 @@ const RightSection = () => {
         event.preventDefault();
     };
 
-    const styles = {
-        or: {
-            color: '#7c7c7c',
-            fontSize: '16px',
-            fontFamily: 'Lexend Deca',
-            lineHeight: '24px',
-            textAlign: 'center',
-        },
-    };
+
 
     return (
         <Box className="right-card ">
-            <Box className="right-card-inner ">
+            <Box className="login-card-inner ">
                 <Typography variant="p" className='text'>
                     Sign in
                 </Typography>
 
-                <FormControl  sx={{py: 1}}>
-                    <TextField label="Email" variant="outlined" className='login_input' />
+                <FormControl variant="standard">
+                    <Box sx={styles.inputbox}>
+                        <input type="email" style={styles.input} placeholder='Email' />
+                        {/* <Idcard /> */}
+                    </Box>
                 </FormControl>
-                <FormControl variant="outlined" className='login_input' sx={{my:2}} >
-                    <InputLabel htmlFor="outlined-adornment-password" sx={{border:'none' , outline:"none"}}>Password</InputLabel >
-                    <OutlinedInput 
+
+                <FormControl variant="standard">
+                    <Box sx={styles.inputbox}>
+                        <input type="text" style={styles.input} placeholder='First Last' />
+                        <Visibility sx={{cursor:'pointer'}} />
+                    </Box>
+                </FormControl>
+
+                {/* <FormControl sx={{ py: 1 }}>
+                    <TextField label="Email" variant="outlined" className='login_input' sx={{ width: "100%" }} />
+                </FormControl> */}
+                {/* <FormControl variant="outlined" className='login_input' sx={{ my: 2 }} >
+                    <InputLabel htmlFor="outlined-adornment-password" sx={{ border: 'none', outline: "none" }}>Password</InputLabel >
+                    <OutlinedInput
                         id="outlined-adornment-password"
                         type={showPassword ? 'text' : 'password'}
                         endAdornment={
@@ -120,8 +169,8 @@ const RightSection = () => {
                         }
                         label="Password"
                     />
-                </FormControl>
-                <Button variant="contained" sx={{mt:2}} onClick={() => naviate("/sign-in")}>Sign in</Button>
+                </FormControl> */}
+                <Button variant="contained" sx={{ mt: 2 }} onClick={() => naviate("/home")}>Sign in</Button>
                 <HorizontalDivider>
                     <Divider />
                     <Typography variant="p" style={styles.or}>
@@ -130,12 +179,19 @@ const RightSection = () => {
                     <Divider />
                 </HorizontalDivider>
                 <Box className="box-item" >
-                    <HorizontalDivider>
+                    <HorizontalDivider sx={{
+                        width: '100%',
+                        [theme.breakpoints.down('sm')]: {
+                            flexWrap: 'wrap',
+                        },
+                    }}>
                         <OauthButton> Google </OauthButton>
                         <OauthButton> Facebook</OauthButton>
                     </HorizontalDivider>
-                    <Typography variant="p" className="bottom-text" onClick={() => naviate("/sign-up")}>
-                        Don't have an account? Sign up
+
+                    <Typography variant="p" className="bottom-text" >
+                        <span className='left'> Don't have an account?</span>
+                        <span className='right' onClick={() => naviate("/sign-up")}> Sign up</span>
                     </Typography>
                 </Box>
             </Box>

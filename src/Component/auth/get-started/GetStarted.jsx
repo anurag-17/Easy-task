@@ -18,12 +18,12 @@ const GetStarted = (props) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2} style={{ padding: '24px' }} >
-        <Grid item xs={6} sx={{p:0}}>
+        <Grid item xs={12} sx={{p:0}} md={6}>
           <LeftSection />
         </Grid>
-        <Grid item xs={6} sx={{p:0}}>
+        <Grid item xs={12} sx={{p:0}} md={6}>
           <RightSection />
-        </Grid>
+        </Grid> 
       </Grid>
     </Box>
   );

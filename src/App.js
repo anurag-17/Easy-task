@@ -11,6 +11,8 @@ import Signup from "./Component/auth/sign-up/Signup";
 // import ChangePassword from "./Component/ChangePassword/Index";
 
 import { Button, ThemeProvider, createTheme } from '@mui/material';
+import Home from "./Component/home/Home";
+import PersistentDrawerLeft from "./Component/home/Home2";
 
 const theme = createTheme({
   palette: {
@@ -46,6 +48,8 @@ function App() {
           <Routes>
 
             <Route path="/" element={<GetStarted />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/home1" element={<PersistentDrawerLeft />} />
             <Route path="/sign-in" element={<Login />} />
             <Route path="/sign-up" element={<Signup />} />
             {/* <Route path="/forgot-password" element={<ForgotPassword />} />

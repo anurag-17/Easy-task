@@ -18,10 +18,10 @@ const Login = (props) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2} style={{ padding: '20px' }} >
-        <Grid item xs={6} sx={{p:0}}>
+        <Grid item xs={12} md={6} sx={{p:0}}>
           <LeftSection />
         </Grid>
-        <Grid item xs={6} sx={{p:0}}>
+        <Grid item xs={12} md={6} sx={{p:0}}>
           <RightSection />
         </Grid>
       </Grid>
