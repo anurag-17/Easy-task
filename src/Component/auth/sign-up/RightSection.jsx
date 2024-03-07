@@ -1,36 +1,12 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { alpha, styled } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
-import { Typography, Box, FormControl, InputLabel, Input, FormControlLabel, Checkbox } from '@mui/material';
+import { Typography, Box, FormControl, InputLabel, Button, FormControlLabel, Checkbox } from '@mui/material';
 import { User } from '../../../Assets/svg/User';
 import Idcard from '../../../Assets/svg/Idcard';
 import Envelope from '../../../Assets/svg/Envelope';
 import Key from '../../../Assets/svg/Key';
 import Lock from '../../../Assets/svg/Lock';
 
-const Button = styled('button')(({ theme }) => ({
-    ...theme.typography.button,
-    cursor: 'pointer',
-    // maxWidth: '482px',
-    width: "100%",
-    height: '48px',
-    padding: '0px 8px',
-    border: '0',
-    boxSizing: 'border-box',
-    borderRadius: '8px',
-    backgroundColor: '#e60d1a',
-    color: '#ffffff',
-    fontSize: '16px',
-    fontFamily: 'Lexend Deca',
-    fontWeight: 600,
-    lineHeight: '24px',
-    outline: 'none',
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    textTransform: "initial",
-}));
 
 const styles = {
     label: {
@@ -94,6 +70,26 @@ const styles = {
         width: '1px',
         height: '1px',
         pointerEvents: 'none',
+    },
+    button: {
+        cursor: 'pointer',
+        maxWidth: '482px',
+        width: "100%",
+        height: '48px',
+        padding: '0px 8px',
+        border: '0',
+        boxSizing: 'border-box',
+        borderRadius: '8px',
+        color: '#ffffff',
+        fontSize: '16px',
+        fontFamily: 'Lexend Deca',
+        fontWeight: 600,
+        lineHeight: '24px',
+        outline: 'none',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textTransform: "capitalize"
     },
 };
 
@@ -203,7 +199,7 @@ const RightSection = () => {
                     />
                 </Box>
 
-                <Button variant="contained" onClick={() => naviate("/sign-in")}>get started</Button>
+                <Button variant="contained" onClick={() => naviate("/sign-in")} color="primary" style={styles.button}>get started</Button>
                 {/* ----------- form ens ----------- */}
 
                 <Box className="box-item" >

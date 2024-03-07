@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { Typography, Box, Paper, TextField, IconButton, FormControl, InputLabel, OutlinedInput, InputAdornment, Grid } from '@mui/material';
+import { Typography, Box, Button, FormControl,  } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useTheme } from '@mui/material/styles';
@@ -21,28 +21,6 @@ const HorizontalDivider = styled('div')(({ theme }) => ({
     rowGap: "15px"
 }));
 
-const Button = styled('button')(({ theme }) => ({
-    ...theme.typography.button,
-    cursor: 'pointer',
-    // maxWidth: '482px',
-    width: "100%",
-    height: '48px',
-    padding: '0px 8px',
-    border: '0',
-    boxSizing: 'border-box',
-    borderRadius: '8px',
-    backgroundColor: '#e60d1a',
-    color: '#ffffff',
-    fontSize: '16px',
-    fontFamily: 'Lexend Deca',
-    fontWeight: 600,
-    lineHeight: '24px',
-    outline: 'none',
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    textTransform: "initial"
-}));
 const OauthButton = styled('button')(({ theme }) => ({
     cursor: 'pointer',
     // width: '212px',
@@ -111,6 +89,26 @@ const styles = {
         alignItems: 'center',
         marginTop: '20px'
     },
+    button: {
+        cursor: 'pointer',
+        maxWidth: '482px',
+        width: "100%",
+        height: '48px',
+        padding: '0px 8px',
+        border: '0',
+        boxSizing: 'border-box',
+        borderRadius: '8px',
+        color: '#ffffff',
+        fontSize: '16px',
+        fontFamily: 'Lexend Deca',
+        fontWeight: 600,
+        lineHeight: '24px',
+        outline: 'none',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textTransform: "capitalize"
+    },
 };
 
 const RightSection = () => {
@@ -147,30 +145,9 @@ const RightSection = () => {
                     </Box>
                 </FormControl>
 
-                {/* <FormControl sx={{ py: 1 }}>
-                    <TextField label="Email" variant="outlined" className='login_input' sx={{ width: "100%" }} />
-                </FormControl> */}
-                {/* <FormControl variant="outlined" className='login_input' sx={{ my: 2 }} >
-                    <InputLabel htmlFor="outlined-adornment-password" sx={{ border: 'none', outline: "none" }}>Password</InputLabel >
-                    <OutlinedInput
-                        id="outlined-adornment-password"
-                        type={showPassword ? 'text' : 'password'}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    aria-label="toggle password visibility"
-                                    onClick={handleClickShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
-                                    edge="end"
-                                >
-                                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                        label="Password"
-                    />
-                </FormControl> */}
-                <Button variant="contained" sx={{ mt: 2 }} onClick={() => naviate("/home")}>Sign in</Button>
+              
+                <Button variant="contained" sx={{ mt: 2 }} onClick={() => naviate("/home")}
+                color="primary" style={styles.button}>Sign in</Button>
                 <HorizontalDivider>
                     <Divider />
                     <Typography variant="p" style={styles.or}>

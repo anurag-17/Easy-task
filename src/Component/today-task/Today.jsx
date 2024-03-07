@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography, FormControlLabel, Checkbox, Divider } from '@mui/material'
+import { Box, Typography, FormControlLabel, Checkbox, Divider, Button } from '@mui/material'
 import setting from "../../Assets/svg/home/settings.svg"
 import flag from "../../Assets/svg/home/flag.svg"
 import calenderTime from "../../Assets/svg/home/cal_times.svg"
@@ -85,28 +85,24 @@ const styles = {
         lineHeight: '18px',
         outline: 'none',
     },
+    button: {
+        cursor: 'pointer',
+        // width: '128px',
+        // height: '36px',
+        padding: '8px 10px',
+        border: '0',
+        boxSizing: 'border-box',
+        borderRadius: '8px',
+        backgroundColor: '#e60d1a',
+        color: '#ffffff',
+        fontSize: '16px',
+        fontFamily: 'Lexend Deca',
+        fontWeight: 600,
+        lineHeight: '24px',
+        outline: 'none',
+        textTransform:"initial"
+    },
 }
-
-const Button = styled('button')(({ theme }) => ({
-    ...theme.typography.button,
-    cursor: 'pointer',
-    padding: '10px 15px',
-    border: '0',
-    boxSizing: 'border-box',
-    borderRadius: '8px',
-    backgroundColor: '#e60d1a',
-    color: '#ffffff',
-    fontSize: '16px',
-    fontFamily: 'Lexend Deca',
-    fontWeight: 600,
-    lineHeight: '24px',
-    outline: 'none',
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    textTransform: "initial",
-}));
-
 const dummyarr = [
     { task: "Research content ideas" },
     { task: "Create a database of guest authors " },
@@ -234,7 +230,7 @@ const TodayPage = () => {
 
                         <Box sx={{ display: 'flex', columnGap: '10px', alignItems: 'flex-end', }}>
                             <Box sx={{ height: '16px', }}> <img src={calenderTime} alt="cal" /> </Box>
-                            <Typography varient="p" style={styles.subtask} sx={{whiteSpace:'nowrap'}}>22-03-22</Typography>
+                            <Typography varient="p" style={styles.subtask} sx={{ whiteSpace: 'nowrap' }}>22-03-22</Typography>
                         </Box>
 
                         <Box sx={{ background: "#ebebeb", height: '16px', width: '1px', }} />
@@ -293,8 +289,8 @@ const TodayPage = () => {
                             Add New Task
                         </Typography>
                     </Box>
-                    <Box sx={{position:'fixed',right:'60px', bottom:'30px'}}>
-                        <Button variant="contained"> Add new task</Button>
+                    <Box sx={{ position: 'fixed', right: '60px', bottom: '30px' }}>
+                        <Button variant="contained" color="primary" style={styles.button}> Add new task</Button>
 
                     </Box>
 
