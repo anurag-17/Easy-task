@@ -19,3 +19,20 @@ export const commentArray = [
         fileSize: "30 MB"
     },
 ];
+export const upcommingArray = [
+    {
+        title: 'Explore potential content topics',
+    },
+    {
+        title:'Discover new ideas for content creation',
+    },
+    {
+        title:'Discover new ideas for content creation',
+    },
+    {
+        title:'Explore ideas for content',
+    },
+    {
+        title:'Brainstorm content concepts',
+    },
+];

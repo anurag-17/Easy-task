@@ -24,6 +24,7 @@ import Signout from "../../Assets/svg/home/signout.svg"
 import Search from "../../Assets/svg/home/search.svg"
 import Notification from "../../Assets/svg/home/notifications.svg"
 import TodayPage from '../today-task/Today';
+import UpcomingPage from '../upcoming/Upcoming';
 import "./home.css"
 
 const dummyArray =
@@ -31,7 +32,8 @@ const dummyArray =
         {
             "label": "Upcoming",
             "icon": Upcoming,
-            "totalNumber": 12
+            "totalNumber": 12,
+            component : <UpcomingPage/>
         },
         {
             "label": "Expired",
@@ -41,7 +43,8 @@ const dummyArray =
         {
             "label": "Today",
             "icon": Today,
-            "totalNumber": 5
+            "totalNumber": 5,
+            component : <TodayPage/>
         },
         {
             "label": "Tomorrow",
@@ -85,6 +88,11 @@ function ResponsiveDrawer(props) {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [isClosing, setIsClosing] = React.useState(false);
     const drawerWidth = isClosing ? '100px' : '300px';
+    const [selectedItem, setSelectedItem] = React.useState(null);
+
+    const handleListItemClick = (item) => {
+        setSelectedItem(item);
+    };
 
     const handleDrawerClose = () => {
         setIsClosing(true);
@@ -121,7 +129,7 @@ function ResponsiveDrawer(props) {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-    
+
         },
         hoverLabel: {
             width: '298px',
@@ -158,18 +166,18 @@ function ResponsiveDrawer(props) {
                         </Box>
                         :
 
-                        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', rowGap:'20px' }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', rowGap: '20px' }}>
                             <Box sx={{ width: '20px', height: '20px', cursor: 'pointer', ml: "auto" }}
                                 onClick={handleDrawerTransitionEnd} > <img src={bars} alt="bars" /> </Box>
                             <Box sx={{ display: 'flex', alignItems: 'flex-end', }}>
-                                <Box sx={{ height: '60px', width: '60px', borderRadius: '50%' }}> <img src={profile} alt="profile" style={{height: 'auto', width: '100%'}}/> </Box>
+                                <Box sx={{ height: '60px', width: '60px', borderRadius: '50%' }}> <img src={profile} alt="profile" style={{ height: 'auto', width: '100%' }} /> </Box>
                             </Box>
                         </Box>
                 }
                 <List sx={{ mt: 4 }}>
                     <Typography variant='p' style={styles.head}>Tasks</Typography>
                     {dummyArray.map((items, index) => (
-                        <ListItem key={index} disablePadding>
+                        <ListItem key={index} disablePadding  onClick={() => handleListItemClick(items)}>
                             <ListItemButton sx={{
                                 '&:hover': {
                                     backgroundColor: '#ebebeb',
@@ -186,7 +194,29 @@ function ResponsiveDrawer(props) {
                                         <ListItemText primary={items.label}
                                             sx={{ color: '#444444', fontSize: '16px', fontFamily: 'Lexend Deca', lineHeight: '24px', m: 0 }}
                                         />
-                                        <ListItemText primary={items.totalNumber} sx={{ m: 0, textAlign: 'right' }} />
+                                        <Box sx={{
+                                            m: 0, textAlign: 'right', borderRadius: '4px',
+                                            backgroundColor: '#ebebeb',
+                                            color: '#444444',
+                                            fontSize: '12px',
+                                            fontFamily: 'Lexend Deca',
+                                            fontWeight: 600,
+                                            lineHeight: '16px',
+                                            display:'flex',
+                                            alignItems:'center',
+                                            justifyContent:'center',
+                                            p:'0px 10px',
+                                            width:'35px',
+                                            '&:hover': {
+                                                backgroundColor: '#fafafa',
+                                            }
+                                        }}>
+
+                                            <ListItemText primary={items.totalNumber} sx={{
+                                                m: 0, textAlign: 'right', borderRadius: '4px',
+                                            }}
+                                            />
+                                        </Box>
                                     </>
                                 }
                             </ListItemButton>
@@ -195,7 +225,7 @@ function ResponsiveDrawer(props) {
                 </List>
                 <Divider sx={{ backgroundColor: '#ebebeb', my: 2 }} />
                 <List  >
-                    <Typography variant='p' style={styles.head}>List</Typography>
+                    <Typography variant='p' style={styles.head}>LISTS</Typography>
                     {dummyArray1.map((items, index) => (
                         <ListItem key={index} disablePadding>
                             <ListItemButton sx={{
@@ -213,7 +243,29 @@ function ResponsiveDrawer(props) {
                                         <ListItemText primary={items.label}
                                             sx={{ color: '#444444', fontSize: '16px', fontFamily: 'Lexend Deca', lineHeight: '24px', m: 0, }}
                                         />
-                                        <ListItemText primary={items.totalNumber} sx={{ m: 0, textAlign: 'right' }} />
+                                         <Box sx={{
+                                            m: 0, textAlign: 'right', borderRadius: '4px',
+                                            backgroundColor: '#ebebeb',
+                                            color: '#444444',
+                                            fontSize: '12px',
+                                            fontFamily: 'Lexend Deca',
+                                            fontWeight: 600,
+                                            lineHeight: '16px',
+                                            display:'flex',
+                                            alignItems:'center',
+                                            justifyContent:'center',
+                                            p:'0px 10px',
+                                            width:'35px',
+                                            '&:hover': {
+                                                backgroundColor: '#fafafa',
+                                            }
+                                        }}>
+
+                                            <ListItemText primary={items.totalNumber} sx={{
+                                                m: 0, textAlign: 'right', borderRadius: '4px',
+                                            }}
+                                            />
+                                        </Box>
                                     </>
                                 }
                             </ListItemButton>
@@ -228,7 +280,7 @@ function ResponsiveDrawer(props) {
                         !isClosing &&
                         <>
                             <Typography sx={{ color: '#444444', fontSize: '16px', fontFamily: 'Lexend Deca', lineHeight: '24px', m: 0, }}
-                            > Add new list </Typography>
+                            > Add New List </Typography>
                         </>
                     }
                 </Box>
@@ -237,65 +289,79 @@ function ResponsiveDrawer(props) {
             </Box>
 
 
-         <Box>
+            <Box>
 
-         {
-                !isClosing ?
-                    <>
-                        <Box sx={{ px: '16px', pt: '150px' }}>
-                            <Box sx={{ display: 'flex', }}>
-                                <Box sx={{ height: '16px', width: '16px', borderRadius: '4px', mr: 2 }}>
+                {
+                    !isClosing ?
+                        <>
+                            <Box sx={{ px: '16px', pt: '150px' }}>
+                                <Box sx={{ display: 'flex', }}>
+                                    <Box sx={{ height: '16px', width: '16px', borderRadius: '4px', mr: 2 }}>
+                                        <img src={Slider} alt="Setting" />
+                                    </Box>
+
+                                    <Typography sx={{ color: '#444444', fontSize: '16px', fontFamily: 'Lexend Deca', lineHeight: '24px', m: 0, }}
+                                    > Settings </Typography>
+                                </Box>
+                                <Box sx={{ display: 'flex', justifyContent: 'space-between', }}>
+                                    <Box sx={{ display: 'flex', my: 2 }}>
+                                        <Box sx={{ height: '16px', width: '16px', borderRadius: '4px', mr: 2 }}>
+                                            <img src={Signout} alt="Signout" />
+                                        </Box>
+                                        <Typography sx={{ color: '#444444', fontSize: '16px', fontFamily: 'Lexend Deca', lineHeight: '24px', m: 0, }}
+                                        > Sign out </Typography>
+
+                                    </Box>
+                                    <Box sx={{ display: 'flex', my: 2, alignItems: 'center' }}>
+                                        <Box sx={{ height: '19px', width: '25px', borderRadius: '4px', mr: 2 }}>
+                                            <img src={Search} alt="Search" style={styles.icon} />
+                                        </Box>
+                                        <Box sx={{ height: '29px', width: '30px', borderRadius: '4px', mr: 2 }}>
+                                            <img src={Notification} alt="Notification" style={styles.icon} />
+                                        </Box>
+                                    </Box>
+                                </Box>
+                            </Box>
+
+                        </>
+                        :
+                        <>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', rowGap: '20px', pl: '16px', pt: '90px' }}>
+                                <Box sx={{ height: '16px', width: '16px', borderRadius: '4px', mr: 2, cursor: 'pointer' }}>
                                     <img src={Slider} alt="Setting" />
                                 </Box>
 
-                                <Typography sx={{ color: '#444444', fontSize: '16px', fontFamily: 'Lexend Deca', lineHeight: '24px', m: 0, }}
-                                > Setting </Typography>
-                            </Box>
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between', }}>
-                                <Box sx={{ display: 'flex', my: 2 }}>
-                                    <Box sx={{ height: '16px', width: '16px', borderRadius: '4px', mr: 2 }}>
-                                        <img src={Signout} alt="Signout" />
-                                    </Box>
-                                    <Typography sx={{ color: '#444444', fontSize: '16px', fontFamily: 'Lexend Deca', lineHeight: '24px', m: 0, }}
-                                    > Sign out </Typography>
-
+                                <Box sx={{ height: '16px', width: '16px', borderRadius: '4px', mr: 2, cursor: 'pointer' }}>
+                                    <img src={Signout} alt="Signout" />
                                 </Box>
-                                <Box sx={{ display: 'flex', my: 2, alignItems: 'center' }}>
-                                    <Box sx={{ height: '19px', width: '25px', borderRadius: '4px', mr: 2 }}>
-                                        <img src={Search} alt="Search" style={styles.icon} />
-                                    </Box>
-                                    <Box sx={{ height: '29px', width: '30px', borderRadius: '4px', mr: 2 }}>
-                                        <img src={Notification} alt="Notification" style={styles.icon} />
-                                    </Box>
+                                <Box sx={{ height: '18px', width: '18px', borderRadius: '4px', mr: 2, cursor: 'pointer' }}>
+                                    <img src={Search} alt="Search" style={styles.icon} />
+                                </Box>
+                                <Box sx={{ height: '22px', width: '22px', borderRadius: '4px', mr: 2, cursor: 'pointer' }}>
+                                    <img src={Notification} alt="Notification" style={styles.icon} />
                                 </Box>
                             </Box>
-                        </Box>
+                        </>
+                }
 
-                    </>
-                    :
-                    <>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', rowGap: '20px', pl: '16px',pt: '90px' }}>
-                            <Box sx={{ height: '16px', width: '16px', borderRadius: '4px', mr: 2 , cursor:'pointer'}}>
-                                <img src={Slider} alt="Setting" />
-                            </Box>
-
-                            <Box sx={{ height: '16px', width: '16px', borderRadius: '4px', mr: 2 , cursor:'pointer' }}>
-                                <img src={Signout} alt="Signout" />
-                            </Box>
-                            <Box sx={{ height: '18px', width: '18px', borderRadius: '4px', mr: 2 , cursor:'pointer' }}>
-                                <img src={Search} alt="Search" style={styles.icon} />
-                            </Box>
-                            <Box sx={{ height: '22px', width: '22px', borderRadius: '4px', mr: 2 , cursor:'pointer' }}>
-                                <img src={Notification} alt="Notification" style={styles.icon} />
-                            </Box>
-                        </Box>
-                    </>
-            }
-
-         </Box>
+            </Box>
 
         </div>
     );
+
+    const renderContent = () => {
+        if (selectedItem) {
+            // Render content based on the selected item
+            return (
+                <div>
+                    <Typography variant="h5">{selectedItem.component}</Typography>
+                    {/* Render additional content here */}
+                </div>
+            );
+        } else {
+            return <Typography variant="h5"> <TodayPage /></Typography>;
+        }
+    };
 
     // Remove this const when copying and pasting into your project.
     const container = window !== undefined ? () => window().document.body : undefined;
@@ -345,7 +411,10 @@ function ResponsiveDrawer(props) {
                 component="main"
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
-                <TodayPage />
+                {/* <TodayPage /> */}
+                {/* <UpcomingPage /> */}
+
+                {renderContent()}
             </Box>
         </Box>
     );
