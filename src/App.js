@@ -13,6 +13,7 @@ import Signup from "./Component/auth/sign-up/Signup";
 import { Button, ThemeProvider, createTheme } from '@mui/material';
 import Home from "./Component/home/Home";
 import PersistentDrawerLeft from "./Component/home/Home2";
+import EditTaskModal from "./Component/today-task/EditTaskModal";
 
 const theme = createTheme({
   palette: {
@@ -48,22 +49,23 @@ function App() {
           <Routes>
 
             <Route path="/" element={<GetStarted />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/home1" element={<PersistentDrawerLeft />} />
+            {/* <Route path="/home" element={<Home />} /> */}
+            {/* <Route path="/edit-task" element={<EditTaskModal />} /> */}
             <Route path="/sign-in" element={<Login />} />
             <Route path="/sign-up" element={<Signup />} />
+            <Route
+              path="/edit-task"
+              element={<PrivateRoute element={<EditTaskModal />} />}
+            />
+            <Route
+              path="/home"
+              element={<PrivateRoute element={<Home />} />}
+            />
             {/* <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
 
-          <Route
-            path="/admindashboard"
-            element={<PrivateRoute element={<SideMenu />} />}
-          />
-          <Route
-            path="/"
-            element={<PrivateRoute element={<SideMenu />} />}
-          /> */}
+          */}
 
           </Routes>
         </BrowserRouter>

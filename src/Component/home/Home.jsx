@@ -120,7 +120,7 @@ function ResponsiveDrawer(props) {
             height: 'auto',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
     
         },
         hoverLabel: {

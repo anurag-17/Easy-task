@@ -14,3 +14,40 @@
 ::-webkit-scrollbar-thumb {
   display: none;
 }
+
+input:focus-visible, button:focus-visible, .MuiBox-root{
+  outline: none;
+}
+
+.modal.MuiModal-root {
+  max-width: 65%;
+  height: 95vh;
+  margin: auto;
+  width: 100%;
+}
+
+@media screen and (max-width:  1530px) {
+  .modal.MuiModal-root {
+    max-width: 75%;
+  }
+}
+@media screen and (max-width:  1024px) {
+  .modal.MuiModal-root {
+    max-width: 85%;
+  }
+}
+@media screen and (max-width:  900px) {
+  .modal.MuiModal-root {
+    max-width: 70%;
+  }
+}
+@media screen and (max-width:  786px) {
+  .modal.MuiModal-root {
+    max-width: 80%;
+  }
+}
+@media screen and (max-width:  520px) {
+  .modal.MuiModal-root {
+    max-width: 90%;
+  }
+}

@@ -1,13 +1,28 @@
 import React from 'react'
-import { Box, Typography, FormControlLabel, Checkbox, Divider, Button } from '@mui/material'
+import { Box, Typography, FormControlLabel, Checkbox, Divider, Button, Modal, Fade, Backdrop } from '@mui/material'
 import setting from "../../Assets/svg/home/settings.svg"
 import flag from "../../Assets/svg/home/flag.svg"
 import calenderTime from "../../Assets/svg/home/cal_times.svg"
 import check from "../../Assets/svg/home/check_Checkbox.svg"
 import Plus from "../../Assets/svg/home/plus.svg"
 import styled from '@emotion/styled'
+import EditTaskModal from './EditTaskModal'
+
 
 const styles = {
+    Modal: {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '100%',
+        backgroundColor: '#ffffff',
+        borderRadius: '16px',
+        boxShadow: '0px 2px 8px rgba(0,0,0,0.12)',
+        p: '15px 10px',
+        height: '100%',
+        overflowY: 'scroll'
+    },
     Head: {
         color: '#212529',
         fontSize: '48px',
@@ -86,23 +101,32 @@ const styles = {
         outline: 'none',
     },
     button: {
+        width: '100%',
         cursor: 'pointer',
-        // width: '128px',
-        // height: '36px',
-        padding: '8px 10px',
-        border: '0',
+        height: '36px',
+        padding: '0px 20px',
+        border: '1px solid #dddddd',
         boxSizing: 'border-box',
         borderRadius: '8px',
-        backgroundColor: '#e60d1a',
-        color: '#ffffff',
         fontSize: '16px',
         fontFamily: 'Lexend Deca',
         fontWeight: 600,
         lineHeight: '24px',
         outline: 'none',
-        textTransform:"initial"
+        textTransform: 'initial',
+        boxShadow: 'none',
+        whiteSpace:'nowrap'
+    },
+    delButton: {
+        backgroundColor: 'rgba(221,221,221,0)',
+        color: '#444444',
+    },
+    primaryButton: {
+        backgroundColor: '#e60d1a',
+        color: '#ffffff',
     },
 }
+
 const dummyarr = [
     { task: "Research content ideas" },
     { task: "Create a database of guest authors " },
@@ -114,10 +138,14 @@ const dummyarr = [
 ]
 const TodayPage = () => {
     const [isChecked, setIsChecked] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const handleChange = (event) => {
         setIsChecked(event.target.checked);
     };
+
     return (
         <>
             <Box>
@@ -289,14 +317,41 @@ const TodayPage = () => {
                             Add New Task
                         </Typography>
                     </Box>
-                    <Box sx={{ position: 'fixed', right: '60px', bottom: '30px' }}>
-                        <Button variant="contained" color="primary" style={styles.button}> Add new task</Button>
 
+                    <Box sx={{
+                        display: 'flex', columnGap: '30px', justifyContent: 'space-around', pt:
+                            '120px', position: 'fixed', right: '60px', bottom: '30px'
+                    }}>
+                        <Button sx={{ ...styles.delButton, ...styles.button }} onClick={handleOpen} variant='outlined'>Edit task</Button>
+                        <Button variant='contained' sx={{ ...styles.primaryButton, ...styles.button }}> Add new task</Button>
                     </Box>
 
                     {/*--------------- add new task end--------------- */}
                 </Box >
             </Box>
+
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                open={open}
+                onClose={handleClose}
+                closeAfterTransition
+                slots={{
+                    backdrop: Backdrop
+                }}
+                slotProps={{
+                    backdrop: {
+                        timeout: 500,
+                    },
+                }}
+                className='modal'
+            >
+                <Fade in={open}>
+                    <Box sx={styles.Modal}>
+                        <EditTaskModal closeModal={handleClose} />
+                    </Box>
+                </Fade>
+            </Modal>
         </>
     )
 }
